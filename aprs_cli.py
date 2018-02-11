@@ -5,7 +5,7 @@ import sys
 import aprslib
 import requests
 
-BADASH_URL = os.environ.get('BADASH_URL', 'http://localhost:8000/events')
+BADASH_API_URL = os.environ.get('BADASH_API_URL', 'http://localhost:8000/events')
 BADASH_API_KEY = os.environ.get('BADASH_API_KEY', '')
 BADASH_JOB = os.environ.get('BADASH_JOB', '')
 
@@ -13,7 +13,7 @@ BADASH_JOB = os.environ.get('BADASH_JOB', '')
 def send_to_badash(packet):
     """send packet data to badash"""
     response = requests.post(
-        BADASH_URL,
+        BADASH_API_URL,
         json=packet,
         headers={'X-Api-Key': BADASH_API_KEY}
     )
@@ -41,7 +41,7 @@ def aprs_callback(packet):
 def main():
     """the main function"""
     print("starting listener: ")
-    print(" BADASH_URL: {}".format(BADASH_URL))
+    print(" BADASH_API_URL: {}".format(BADASH_API_URL))
     print(" BADASH_API_KEY: {}".format(BADASH_API_KEY))
     print(" BADASH_JOB: {}".format(BADASH_JOB))
     print(" CALL SIGN: {}".format(sys.argv[1]))
